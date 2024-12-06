@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo de Livros</title> <!-- Título da página -->
+  <style>
+    /* Estilo do corpo com gradiente */
+    body {
+      font-family: Arial, sans-serif; /* Define a fonte */
+      background: linear-gradient(to right, #ac74eb, #000000); /* Gradiente de fundo */
+      margin: 0; /* Remove margens */
+      padding: 0; /* Remove preenchimento */
+      display: flex; /* Flexbox para layout */
+      flex-direction: column; /* Direção em coluna */
+      align-items: center; /* Centraliza itens */
+    }
+
+    /* Estilo do container geral */
+    .container {
+      max-width: 800px; /* Largura máxima */
+      width: 100%; /* Largura total */
+      background-color: white; /* Fundo branco */
+      border-radius: 10px; /* Bordas arredondadas */
+      padding: 20px; /* Preenchimento interno */
+      box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1); /* Sombra */
+      margin-top: 30px; /* Margem superior */
+    }
+
+    /* Título da página */
+    h1 {
+      color: #333; /* Cor do título */
+      text-align: center; /* Centraliza o texto */
+    }
+
+    /* Estilo do formulário */
+    form {
+      display: flex; /* Flexbox para o formulário */
+      justify-content: space-between; /* Espaço entre os itens */
+      margin-bottom: 20px; /* Margem inferior */
+    }
+
+    form input {
+      width: 30%; /* Largura dos campos */
+      padding: 10px; /* Preenchimento interno */
+      margin-right: 10px; /* Margem à direita */
+      border: 1px solid #ccc; /* Borda cinza */
+      border-radius: 5px; /* Bordas arredondadas */
+      font-size: 1em; /* Tamanho da fonte */
+    }
+
+    form button {
+      padding: 10px 20px; /* Preenchimento do botão */
+      background-color: #bc74eb; /* Cor de fundo do botão */
+      border: none; /* Sem borda */
+      border-radius: 5px; /* Bordas arredondadas */
+      font-size: 1em; /* Tamanho da fonte */
+      color: white; /* Cor do texto */
+      cursor: pointer; /* Cursor de ponteiro */
+      transition: background-color 0.3s ease; /* Transição suave */
+    }
+
+    form button:hover {
+      background-color: #8f5ae5; /* Cor de fundo ao passar o mouse */
+    }
+
+    /* Estilo da lista de livros */
+    ul {
+      list-style-type: none; /* Remove os marcadores da lista */
+      padding: 0; /* Remove o preenchimento */
+    }
+
+    li {
+      display: flex; /* Flexbox para o item da lista */
+      justify-content: space-between; /* Espaço entre os itens */
+      align-items: center; /* Alinha verticalmente */
+      background-color: #f9f9f9; /* Cor de fundo do item */
+      border: 1px solid #ccc; /* Borda cinza */
+      border-radius: 5px; /* Bordas arredondadas */
+      padding: 10px; /* Preenchimento interno */
+      margin-bottom: 10px; /* Margem inferior */
+    }
+
+    /* Estilo das informações dos livros */
+    .Livros-info {
+      display: flex; /* Flexbox para informações do livro */
+      align-items: center; /* Alinha verticalmente */
+    }
+
+    .Livros-info img {
+      width: 40px; /* Largura da imagem do livro */
+      height: 40px; /* Altura da imagem do livro */
+      margin-right: 15px; /* Margem à direita */
+    }
+
+    .Livros-info strong {
+      font-size: 1.1em; /* Tamanho da fonte para o título */
+      color: #333; /* Cor do título */
+    }
+
+    .Livros-info span {
+      color: #777; /* Cor do autor e ano */
+      font-size: 0.9em; /* Tamanho da fonte */
+    }
+
+    /* Estilo do botão remover */
+    li form button {
+      background-color: #370057; /* Cor do botão de remoção */
+      padding: 5px 10px; /* Preenchimento do botão */
+    }
+
+    li form button:hover {
+      background-color: #8f5ae5; /* Cor ao passar o mouse */
+    }
+  </style>
+</head>
+<body>
+  <div class="container"> <!-- Container principal -->
+    <h1>Catálogo de Livros</h1>
+    
+    <!-- Formulário para adicionar novos livros -->
+    <form action="/books/add" method="POST">
+      <input type="text" name="titulo" placeholder="Título" required> <!-- Campo para o título -->
+      <input type="text" name="autor" placeholder="Autor" required> <!-- Campo para o autor -->
+      <input type="number" name="ano" placeholder="Ano" required> <!-- Campo para o ano -->
+      <button type="submit">Adicionar Livro</button> <!-- Botão para adicionar livro -->
+    </form>
+
+    <ul>
+      <% books.forEach((book, index) => { %> <!-- Itera sobre os livros -->
+        <li>
+          <div class="Livros-info"> <!-- Informações do livro -->
+            <img src="/livros_icon.png" alt="Icon">
+            <div>
+              <strong><%= book.titulo %></strong> - <span><%= book.autor %> (Publicado em <%= book.ano %>)</span> <!-- Informações do livro -->
+            </div>
+          </div>
+          <form action="/books/delete/<%= index %>" method="POST"> <!-- Formulário para remoção -->
+            <button type="submit">Remover</button> <!-- Botão para remover livro -->
+          </form>
+        </li>
+      <% }) %>
+    </ul>
+  </div>
+</body>
+</html>

@@ -1,0 +1,9 @@
+Professora, criei a pasta `public` em minha aplicação Express para organizar melhor os arquivos estáticos, como imagens, CSS e JavaScript. 
+Essa estrutura me permite acessar esses arquivos diretamente via URL, o que facilita a entrega e melhora a eficiência do projeto. 
+Ao manter os arquivos estáticos separados do código do servidor, também estou garantindo uma maior segurança e organização.
+
+Além disso, assisti a vídeos sobre como criar essa pasta e como utilizá-la adequadamente, o que me ajudou a entender a 
+importância de uma boa estrutura no desenvolvimento web. Como resultado, consegui colocar a imagem `livros_icon.png` dentro da pasta 
+public, tornando-a acessível por meio do caminho /livros_icon.png. Isso simplifica o processo de servir recursos estáticos em minha aplicação.
+
+LINK do vídeo: https://youtu.be/77tPyii75qw
